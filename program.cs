@@ -18,7 +18,7 @@ public class s3cr3txCSharpTestApp
     {
         try
         {
-            Console.WriteLine(@"Welcome to the s3cr3tx C# Demo, please enter something to encrypt and decrypt: ");
+            Console.WriteLine(@"Welcome to the s3cr3tx C# Demo, please enter something to encrypt or decrypt: ");
             string strInput = Console.ReadLine();
             Console.WriteLine(@"Type encrypt to encrypt or decrypt to decrypt");
             string strDirection = Console.ReadLine();

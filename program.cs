@@ -11,9 +11,10 @@ using System.Linq.Expressions;
 
 public class s3cr3txCSharpTestApp
 {
-    private static string APIToken = @"";
-    private static string AuthCode = @"";
-    private static string strEmail = @"";
+    private static string APIToken = Environment.GetEnvironmentVariable(@"s3cr3tx_APIToken");
+    private static string AuthCode = Environment.GetEnvironmentVariable(@"s3cr3tx_AuthCode");
+    private static string strEmail = Environment.GetEnvironmentVariable(@"s3cr3tx_Email");
+    
     public static async Task Main(string[] args)
     {
         try
@@ -49,6 +50,8 @@ public class s3cr3txCSharpTestApp
     {
         try
         {
+          if(APIToken is not null && AuthCode is not null && strEmail is not null)
+          {
             if (strDirection.Equals(@"e"))
             {
                 var client1 = new HttpClient();
@@ -71,6 +74,11 @@ public class s3cr3txCSharpTestApp
                 var result = await client1.GetStringAsync(@"https://s3cr3tx.com/Values");
                 return result;
             }
+          else
+          {
+                var result = @"Unable to complete. Please set the environment variables: s3cr3tx_APIToken, s3cr3tx_AuthCode, and s3cr3tx_Email";
+                return result;
+          }
         }
         catch (Exception ex)
         {
